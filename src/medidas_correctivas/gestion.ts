@@ -33,6 +33,22 @@ export const gestionMedidasCorrectivas = async() => {
     await timeOut(2000);
 
     //INGRESO NUMERO DOCUMENTO
+    await page.waitForSelector("#ctl00_ContentPlaceHolder3_txtExpediente")
+    await page.type("#ctl00_ContentPlaceHolder3_txtExpediente", numeroDocumento, {delay: 100})
+    await timeOut(2000);
+    console.log("ingresa numero de documento");
+
+    //INGRESO FECHA EXPEDICION
+    await page.waitForSelector("#txtFechaexp")
+    await page.type("#txtFechaexp", fechaExpedicion, {delay: 100})
+    await timeOut(2000);
+    console.log("ingresa fecha de expedicion");
+
+    //CLICK BOTON CONSULTAR O BUSCAR
+    await page.waitForSelector(".input-group-addon")
+    await page.click(".input-group-addon") 
+    await timeOut(5000);
+    console.log("consulta la informacion");
 
 
     
