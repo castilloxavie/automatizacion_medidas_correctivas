@@ -6,10 +6,13 @@ import { timeOut } from "../utils/helpers";
 
 dotenv.config();
 
-export const gestionMedidasCorrectivas = async () => {
+export const gestionMedidasCorrectivas = async (
+    numeroDocumento: string,
+    fechaExpedicion: string
+) => {
   //1.VARIABLES TEMPORALES
-  const numeroDocumento = "1105614825";
-  const fechaExpedicion = "01010000";
+  //const numeroDocumento = "1105614825";
+  //const fechaExpedicion = "01010000";
 
   //2.INICIO NAVEGADOR
   const browser = await puppeteer.launch(brwserComfig);
@@ -32,7 +35,7 @@ export const gestionMedidasCorrectivas = async () => {
 
   //6.INGRESO NUMERO DOCUMENTO
   await page.waitForSelector("#ctl00_ContentPlaceHolder3_txtExpediente");
-  await page.type("#ctl00_ContentPlaceHolder3_txtExpediente", numeroDocumento, {
+  await page.type("#ctl00_ContentPlaceHolder3_txtExpediente", String(numeroDocumento), {
     delay: 100,
   });
   await timeOut(2000);
@@ -40,7 +43,7 @@ export const gestionMedidasCorrectivas = async () => {
 
   //7.INGRESO FECHA EXPEDICION
   await page.waitForSelector("#txtFechaexp");
-  await page.type("#txtFechaexp", fechaExpedicion, { delay: 100 });
+  await page.type("#txtFechaexp", String(fechaExpedicion), { delay: 100 });
   await timeOut(2000);
   console.log("ingresa fecha de expedicion");
 
